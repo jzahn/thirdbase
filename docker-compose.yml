@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    command: /bin/sh -c 'mix ecto.create && mix ecto.migrate && mix phx.server'
+    ports:
+      - "4000:4000"
+    environment:
+      MIX_ENV: dev
+    depends_on:
+      - db
+  db:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+       - ./data:/var/lib/postgresql/data
