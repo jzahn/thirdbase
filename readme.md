@@ -8,52 +8,57 @@ Elixir - https://hub.docker.com/_/elixir (Alpine)
 
 Postgres - https://hub.docker.com/_/postgres (Alpine)
 
-## Creating app and database
+## Creating an Application
 
-First install hex and the phoenix app generator
-mix archive.install hex phx_new
+1) First install hex and the phoenix app generator
 
-Now bootstrap the application...
+`mix archive.install hex phx_new`
 
-For a REST API (minimal):
+2) Now bootstrap the application...
 
-mix phx.new app --app APINAME --no-assets --no-html --no-gettext --no-dashboard --no-live --no-mailer
+- For a REST API (minimal):
 
-For a more traditional webapp:
+`mix phx.new app --app APINAME --no-assets --no-html --no-gettext --no-dashboard --no-live --no-mailer`
 
-mix phx.new app --app APPNAME
+- For a more traditional webapp:
 
-Now in app/config/dev.exs change:
-  hostname: "localhost",
+`mix phx.new app --app APPNAME`
+
+3) Now in app/config/dev.exs change:
+
+  `hostname: "localhost",`
+
 to
-  hostname: "db",
+
+  `hostname: "db",`
+
 to configure the app/api to point at the postgres docker image.
 
 and
 
-  http: [ip: {127, 0, 0, 1}, port: 4000]
+  `http: [ip: {127, 0, 0, 1}, port: 4000]`
 
 to
 
-  http: [ip: {0, 0, 0, 0}, port: 4000]
+  `http: [ip: {0, 0, 0, 0}, port: 4000]`
 
 so the app/api can be accessed outside the container.
 
 ## Adding an endpoint and table (changeset)
 
-cd app
+`cd app`
 
-mix phx.gen.context Test Entity entities a_string:string an_integer:integer
+`mix phx.gen.context Test Entity entities a_string:string an_integer:integer`
 
-mix phx.gen.json Test Entity entities a_string:string an_integer:integer --no-context
+`mix phx.gen.json Test Entity entities a_string:string an_integer:integer --no-context`
 
 then add the new route to app/lib/appname_web/router.ex under :api:
 
-resources "/entities", EntityController, except: [:new, :edit]
+`resources "/entities", EntityController, except: [:new, :edit]`
 
 ## Start the app/api
 
-docker-compose up
+`docker-compose up`
 
 ## Reference Links
 
