@@ -68,6 +68,10 @@ then add the new route to app/lib/appname_web/router.ex under :api:
 
 `docker-compose up`
 
+## Accessing the API
+
+GET/POST etc http://localhost:4000/api/entities
+
 ## Reference Links
 
 https://www.dairon.org/2020/07/06/simple-rest-api-with-elixir-phoenix.html
