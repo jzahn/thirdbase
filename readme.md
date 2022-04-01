@@ -52,6 +52,14 @@ so the app/api can be accessed outside the container.
 
 `mix phx.gen.json Test Entity entities a_string:string an_integer:integer --no-context`
 
+You can also just do this if a context doesn't already exist.
+
+`mix phx.gen.json Test Entity entities a_string:string an_integer:integer`
+
+This example demonstrates a hierarchy for context and how to skip schema generation.
+
+`mix phx.gen.json Test Api.Entity entities a_string:string an_integer:integer --web Api --no-context --no-schema`
+
 then add the new route to app/lib/appname_web/router.ex under :api:
 
 `resources "/entities", EntityController, except: [:new, :edit]`
@@ -73,6 +81,3 @@ https://github.com/codeship-library/elixir-phoenix-quickstart/blob/master/docker
 https://github.com/codeship-library/elixir-phoenix-quickstart
 
 https://medium.com/codex/how-to-persist-and-backup-data-of-a-postgresql-docker-container-9fe269ff4334
-
-Note from Nick
-mix phx.gen.json RideShare Api.RideRequest ride_requests origin:string destination:string guests:integer --web Api --no-context --no-schema
