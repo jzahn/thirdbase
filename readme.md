@@ -68,3 +68,6 @@ https://github.com/codeship-library/elixir-phoenix-quickstart/blob/master/docker
 https://github.com/codeship-library/elixir-phoenix-quickstart
 
 https://medium.com/codex/how-to-persist-and-backup-data-of-a-postgresql-docker-container-9fe269ff4334
+
+Note from Nick
+mix phx.gen.json RideShare Api.RideRequest ride_requests origin:string destination:string guests:integer --web Api --no-context --no-schema
