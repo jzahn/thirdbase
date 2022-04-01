@@ -16,9 +16,11 @@ mix archive.install hex phx_new
 Now bootstrap the application...
 
 For a REST API (minimal):
+
 mix phx.new app --app APINAME --no-assets --no-html --no-gettext --no-dashboard --no-live --no-mailer
 
 For a more traditional webapp:
+
 mix phx.new app --app APPNAME
 
 Now in app/config/dev.exs change:
@@ -28,9 +30,13 @@ to
 to configure the app/api to point at the postgres docker image.
 
 and
-  http: [ip: {127, 0, 0, 1}, port: 4000] 
-to 
+
+  http: [ip: {127, 0, 0, 1}, port: 4000]
+
+to
+
   http: [ip: {0, 0, 0, 0}, port: 4000]
+
 so the app/api can be accessed outside the container.
 
 ## Adding an endpoint and table (changeset)
@@ -41,7 +47,8 @@ mix phx.gen.context Test Entity entities a_string:string an_integer:integer
 
 mix phx.gen.json Test Entity entities a_string:string an_integer:integer --no-context
 
-then add the new route to app/lib/appname_web/router.ex under :api
+then add the new route to app/lib/appname_web/router.ex under :api:
+
 resources "/entities", EntityController, except: [:new, :edit]
 
 ## Start the app/api
